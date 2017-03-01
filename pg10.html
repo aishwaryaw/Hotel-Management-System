@@ -1,0 +1,164 @@
+<html>
+  <body background="bg3.jpg">
+    <form name="myForm" id="myForm">
+      <table cellspacing="2" cellpadding="2" border="1">
+        <tr>
+          <td align="right">
+            First Name
+          </td>
+          <td>
+            <input type="text" name="fname" id="un" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Last Name
+          </td>
+          <td>
+            <input type="text" name="lname"id="ln" />
+          </td>
+        </tr>
+		 <tr>
+          <td align="right">
+            Password
+          </td>
+          <td>
+            <input type="password" name="password" id="pwd" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            EMail
+          </td>
+          <td>
+            <input type="text" name="email" id="e"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Phone
+          </td>
+          <td>
+            <input type="text" name="phone" id="p"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Address
+          </td>
+          <td>
+            <textarea style="resize:none" cols="16" rows="5" name="address"id="a"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Country
+          </td>
+          <td>
+            <select name="country"id="c">
+            <option value="008">Albania</option>
+            <option value="012">Algeria</option>
+            <option value="016">American Samoa</option>
+            <option value="020">Andorra</option>
+            <option value="024">Angola</option>
+            <option value="660">Anguilla</option>
+            <option value="010">Antarctica</option>
+            <option value="028">Antigua And Barbuda</option>
+            <option value="032">Argentina</option>
+            <option value="051">Armenia</option>
+            
+			<option value="533">india</option>
+			</select>
+          </td>
+        </tr>
+        <tr>
+          <td align="right"></td>
+          <td>
+            <input type="button" value="submit"onclick="validator()" />
+          </td>
+        </tr>
+      </table>
+    </form>
+	</body>
+	<head>
+<script type="text/javascript">
+
+function validator()
+{
+var x=document.forms["myForm"]["fname"].value;
+if (x==null || x=="")
+{
+  alert("Please enter first name");
+  return false;
+}
+if (x.length > 20)
+{
+  alert("Maximum length of name is 20");
+  return false;
+}  
+if(x>=0 && x<=9)
+{
+alert("name is not valid");
+return false;
+}
+var x=document.forms["myForm"]["email"].value;
+var at=x.indexOf("@");
+var dot = x.lastIndexOf(".");
+if(x.length>=50)
+{
+  alert("Please enter valid e-mail ID");
+  return false;
+}
+if (at<1 || dot<at+2 || dot+2>=x.length)
+  {
+  alert("Not a valid e-mail address");
+  return false;
+  }
+
+var x=document.forms["myForm"]["phone"].value;
+if (x.length > 11)
+{
+  alert("Maximum length of phone number is 11");
+return false;
+}  
+
+var numericExpression = /^[0-9]+$/;
+if(!x.match(numericExpression))
+{
+	alert("Only numerics are allowed");
+	
+return false;
+}
+else
+{
+var un=document.getElementById("un").value;
+var pwd=document.getElementById("pwd").value;
+
+var http=new XMLHttpRequest();
+http.open("POST","pg12.php?nm="+un+"&pwd="+pwd,true);
+http.send();
+
+http.onreadystatechange = function() {
+if (http.readyState == 4) 
+	{
+
+	var res=http.responseText;
+    alert(res);
+	}
+	if(res=='You r added to our site')
+	{
+	var un='';
+	var pwd='';
+	var a='';
+	var ln='';
+	var p='';
+	
+	}
+
+}
+}
+}
+
+</script>
+</head>
+</html>

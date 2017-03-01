@@ -1,0 +1,48 @@
+<html>
+<head>
+
+<script type="text/javascript">
+
+function check()
+{
+var un=document.getElementById("usernm").value;
+var pwd=document.getElementById("pwd").value;
+
+
+var http=new XMLHttpRequest();
+http.open("POST","pg2.php?nm="+un+"&pwd="+pwd,true);
+http.send();
+alert("hii");
+http.onreadystatechange = function() {
+if (http.readyState == 4) 
+	{
+	var res=http.responseText;
+    alert(res);
+	if(res=='u r added'|| res=='u r user')
+	{
+	document.getElementById('nm').value='';
+	document.getElementById('pwd').value='';
+	}
+}
+}
+}
+</script>
+</head>
+
+<body background="13.jpg">
+
+<table>
+<FORM>
+<tr><td><b>NAME:</b><input type="text" style="height:30px;width:100px;" name="nm" id="usernm"></input></td></tr>
+<tr></tr>
+<tr></tr>
+<tr><td><b>PASSWORD:</b><input type="password"style="height:30px;width:100px;"  id="pwd" name="pwd"></input></td></tr>
+<tr></tr>
+<tr></tr>
+<tr><td><input type="submit" value="submit" onclick="check()"></input></td></tr>
+</form>
+</table>
+<div id="abc" style="width:100px;height:100px;"></div>
+</form>
+</body>
+</html>
